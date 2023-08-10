@@ -5,9 +5,11 @@ pragma solidity ^0.8.18;
 // import "hardhat/console.sol";
 
 contract TokenSale {
-
-    constructor() {
-
+    uint256 public ratio;
+    address public paymentToken;
+    constructor(uint256 _ratio, address _paymentToken) {
+        ratio = _ratio;
+        paymentToken = _paymentToken;
     }
 
 }
