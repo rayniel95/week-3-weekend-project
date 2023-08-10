@@ -27,7 +27,8 @@ describe("NFT Shop", async () => {
 
   describe("When the Shop contract is deployed", async () => {
     it("defines the ratio as provided in parameters", async () => {
-      throw new Error("Not implemented");
+      const ratio = await tokenSaleContract.ratio();
+      expect(ratio).to.equal(RATIO);
     });
 
     it("uses a valid ERC20 as payment token", async () => {
