@@ -5,10 +5,25 @@ import {
 import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs";
 import { expect } from "chai";
 import { ethers } from "hardhat";
+import { TokenSale } from "../typechain-types";
 
+
+const RATIO = 10;
 
 describe("NFT Shop", async () => {
-  beforeEach(async () => {});
+  let tokenSaleContract: TokenSale;
+
+  async function deployContracts() {
+     const TokenSaleFactory = await ethers.getContractFactory("TokenSale");
+     const tokenSaleContract_ = await TokenSaleFactory.deploy();
+     await tokenSaleContract_.waitForDeployment();
+
+     return {tokenSaleContract_}
+  }
+  beforeEach(async () => {
+    const {tokenSaleContract_} = await loadFixture(deployContracts);
+    tokenSaleContract = tokenSaleContract_;
+  });
 
   describe("When the Shop contract is deployed", async () => {
     it("defines the ratio as provided in parameters", async () => {
