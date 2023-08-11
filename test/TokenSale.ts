@@ -5,7 +5,7 @@ import {
 import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs";
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { TokenSale } from "../typechain-types";
+import { ERC20, TokenSale } from "../typechain-types";
 
 
 const RATIO = 10;
@@ -14,11 +14,20 @@ describe("NFT Shop", async () => {
   let tokenSaleContract: TokenSale;
 
   async function deployContracts() {
-     const TokenSaleFactory = await ethers.getContractFactory("TokenSale");
-     const tokenSaleContract_ = await TokenSaleFactory.deploy();
-     await tokenSaleContract_.waitForDeployment();
+    const ERC20Factory = await ethers.getContractFactory("ERC20");
+    const erc20TokenContract = await ERC20Factory.deploy("MyERC20", "MERC20");
+    await erc20TokenContract.waitForDeployment();
 
-     return {tokenSaleContract_}
+    const erc20TokenContractAddress = await erc20TokenContract.getAddress();
+
+    const TokenSaleFactory = await ethers.getContractFactory("TokenSale");
+    const tokenSaleContract_ = await TokenSaleFactory.deploy(
+      RATIO,
+      erc20TokenContractAddress
+    );
+    await tokenSaleContract_.waitForDeployment();
+
+    return {tokenSaleContract_}
   }
   beforeEach(async () => {
     const {tokenSaleContract_} = await loadFixture(deployContracts);
@@ -32,7 +41,11 @@ describe("NFT Shop", async () => {
     });
 
     it("uses a valid ERC20 as payment token", async () => {
-      throw new Error("Not implemented");
+      const erc20TokenContractAddress = await tokenSaleContract.getAddress();
+      const ERC20Factory = await ethers.getContractFactory("ERC20");
+      const erc20TokenContract = ERC20Factory.attach(erc20TokenContractAddress) as ERC20;
+      await expect(erc20TokenContract.balanceOf(ethers.ZeroAddress)).not.to.be.reverted;
+      await expect(erc20TokenContract.totalSupply()).not.to.be.reverted;
     });
   });
 
