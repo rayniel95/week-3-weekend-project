@@ -2,11 +2,10 @@ import dotenv from "dotenv"
 dotenv.config()
 import { ethers } from "hardhat";
 import { MyERC20Votes__factory } from "../typechain-types";
+import { account1 } from "./scriptsConfig";
 
 
 async function main() {
-    const alchemyProvider = new ethers.AlchemyProvider("sepolia", process.env.ALCHEMY_API_KEY);
-    const account1 = new ethers.Wallet(process.env.account1PrivKey!, alchemyProvider);
 
     const erc20VotesFactory = new MyERC20Votes__factory(account1);
 
