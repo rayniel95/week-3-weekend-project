@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
-contract MyToken is ERC20, ERC20Permit, ERC20Votes, AccessControl {
+contract MyERC20Votes is ERC20, ERC20Permit, ERC20Votes, AccessControl {
     constructor() ERC20("MyToken", "MTK") ERC20Permit("MyToken") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
     }

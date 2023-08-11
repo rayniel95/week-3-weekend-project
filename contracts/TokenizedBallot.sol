@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.7.0 <0.9.0;
 
-import "./ERC20Votes.sol";
+import "./MyERC20Votes.sol";
 
 /// @title Voting with delegation.
 contract Ballot {
-    ERC20Votes public tokenContract;
+    MyERC20Votes public tokenContract;
     // This is a type for a single proposal.
     struct Proposal {
         bytes32 name;   // short name (up to 32 bytes)
@@ -22,7 +22,7 @@ contract Ballot {
         address _tokenContract,
         uint256 _targetBlockNumber
     ) {
-        tokenContract = ERC20Votes(_tokenContract);
+        tokenContract = MyERC20Votes(_tokenContract);
         targetBlockNumber = _targetBlockNumber;
         // For each of the provided proposal names,
         // create a new proposal object and add it
