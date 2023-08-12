@@ -30,6 +30,10 @@ contract MyERC20Votes is ERC20, ERC20Permit, ERC20Votes, AccessControl {
         super._mint(to, amount);
     }
 
+    function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
+        _mint(to, amount);
+    }
+
     function _burn(address account, uint256 amount)
         internal
         override(ERC20, ERC20Votes)
