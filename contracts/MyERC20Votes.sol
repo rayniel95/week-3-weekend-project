@@ -7,8 +7,11 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
 contract MyERC20Votes is ERC20, ERC20Permit, ERC20Votes, AccessControl {
+    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+
     constructor() ERC20("MyToken", "MTK") ERC20Permit("MyToken") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        _grantRole(MINTER_ROLE, msg.sender);
     }
 
     // The following functions are overrides required by Solidity.
