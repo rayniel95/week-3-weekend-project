@@ -14,7 +14,7 @@ async function main() {
             "0x6672657361000000000000000000000000000000000000000000000000000000"
         ],
         process.env.MyERC20VotesContractAddress!,
-        "4076910",
+        process.env.targetBlockNumber!,
     );
 
     await contract.waitForDeployment()
