@@ -15,7 +15,7 @@ async function main() {
     ) as MyERC20Votes;
 
     const contractAddress = await contract.delegate(
-        process.env.toSelfDelegate!,
+        account.address,
     );
     console.log("you have activate snapshots");
 }
