@@ -4,7 +4,7 @@ pragma solidity >=0.7.0 <0.9.0;
 import "./MyERC20Votes.sol";
 
 /// @title Voting with delegation.
-contract Ballot {
+contract TokenizedBallot {
     MyERC20Votes public tokenContract;
     // This is a type for a single proposal.
     struct Proposal {
