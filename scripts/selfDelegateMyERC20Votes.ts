@@ -6,7 +6,7 @@ import { ethers } from "hardhat";
 
 async function main() {
     const alchemyProvider = new ethers.AlchemyProvider("sepolia", process.env.ALCHEMY_API_KEY);
-    const account = new ethers.Wallet(process.env.toSelfDelegate!, alchemyProvider);
+    const account = new ethers.Wallet(process.env.toSelfDelegatePrivateKey!, alchemyProvider);
 
     const myERC20VotesFactory = new MyERC20Votes__factory(account);
 
