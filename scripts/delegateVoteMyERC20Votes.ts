@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+dotenv.config();
 import { MyERC20Votes, MyERC20Votes__factory } from "../typechain-types";
 import { ethers } from "hardhat";
 
