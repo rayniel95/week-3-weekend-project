@@ -10,11 +10,11 @@ async function main() {
         process.env.MyERC20VotesContractAddress!
     ) as MyERC20Votes;
     
-    await myERC20VotesContract.mint(process.env.account1!, ethers.parseUnits("100", tokenDecimals));
-    await myERC20VotesContract.mint(process.env.account2!, ethers.parseUnits("100", tokenDecimals));
-    await myERC20VotesContract.mint(process.env.account3!, ethers.parseUnits("100", tokenDecimals));
-    await myERC20VotesContract.mint(process.env.account4!, ethers.parseUnits("100", tokenDecimals));
-    await myERC20VotesContract.mint(process.env.account5!, ethers.parseUnits("100", tokenDecimals));
+    await myERC20VotesContract.mint(process.env.account1!, ethers.parseUnits(process.env.account1InitialBalance!, tokenDecimals));
+    await myERC20VotesContract.mint(process.env.account2!, ethers.parseUnits(process.env.account2InitialBalance!, tokenDecimals));
+    await myERC20VotesContract.mint(process.env.account3!, ethers.parseUnits(process.env.account3InitialBalance!, tokenDecimals));
+    await myERC20VotesContract.mint(process.env.account4!, ethers.parseUnits(process.env.account4InitialBalance!, tokenDecimals));
+    await myERC20VotesContract.mint(process.env.account5!, ethers.parseUnits(process.env.account5InitialBalance!, tokenDecimals));
 }
 
 main().then()
